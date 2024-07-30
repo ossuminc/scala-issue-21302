@@ -8,7 +8,7 @@ Global / onChangedBuildSource := ReloadOnSourceChanges
 
 enablePlugins(OssumIncPlugin)
 
-lazy val root: Project = Root("riddl", startYr = 2024)
+lazy val root: Project = Root("scala-issue", startYr = 2024)
   .configure(With.noPublishing, With.git, With.dynver)
   .aggregate(issue, issueJS)
 
