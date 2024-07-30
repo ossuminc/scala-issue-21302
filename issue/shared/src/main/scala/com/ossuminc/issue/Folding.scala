@@ -13,19 +13,19 @@ import scala.scalajs.js.annotation.*
 @JSExportTopLevel("Folding")
 object Folding {
   trait RiddlValue {
-    def isContainer: Boolean 
+    def isContainer: Boolean
     def isEmpty: Boolean
-    def nonEmpty: Boolean = !isEmpty 
-    def isAnonymous: Boolean = false 
+    def nonEmpty: Boolean = !isEmpty
+    def isAnonymous: Boolean = false
   }
 
-  type Contents[+CV <: RiddlValue] = Seq[CV]
+  private type Contents[+CV <: RiddlValue] = Seq[CV]
 
   sealed trait Container[+CV <: RiddlValue] extends RiddlValue {
     def contents: Contents[CV]
-    def isContainer: Boolean = true 
+    def isContainer: Boolean = true
   }
-  
+
   private type SimpleDispatch[S, V <: RiddlValue] = (Container[V], V, S) => S
 
   /** Folding with state from an element of type V
@@ -35,7 +35,7 @@ object Folding {
     * @param child
     *   The node to fold through
     * @param state
-    *   Initial value of arbitrary type `S`` that can be used to fold the nodes into and provides the result type
+    *   Initial value of arbitrary type `S` that can be used to fold the nodes into and provides the result type
     * @param f
     *   The folding function which takes 3 arguments and returns an `S` (list the initial `state`)
     * @tparam S
